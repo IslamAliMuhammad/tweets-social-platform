@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tweet;
+use App\Models\User;
 
-class HomeController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,6 @@ class HomeController extends Controller
     public function index()
     {
         //
-
-        return \view('home');
     }
 
     /**
@@ -49,6 +47,8 @@ class HomeController extends Controller
     public function show($id)
     {
         //
+        // User::find($id);        
+        return \view('profile');
     }
 
     /**

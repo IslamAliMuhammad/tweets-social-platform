@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tweet;
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+
+class TweetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,6 @@ class HomeController extends Controller
     public function index()
     {
         //
-
-        return \view('home');
     }
 
     /**
@@ -35,9 +35,22 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
+        $validatedData = $request->validate([
+            'tweetBody' => 'required|max:255',
+        ]);
+        
+        $tweet = new Tweet;
+
+        $tweet->user_id = Auth::id();
+        $tweet->body = $validatedData['tweetBody'];
+
+        $tweet->save();
+
+        return \redirect('home');
     }
 
     /**

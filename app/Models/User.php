@@ -57,4 +57,25 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function tweets(){
+        return $this->hasMany('App\Models\Tweet');
+    }
+
+    public function follows(){
+        return $this->belongsToMany('App\Models\User', 'follows', 'user_id', 'following_user_id');
+    }
+
+    /**
+     * Get tweets for users that user following
+     * 
+     * @return App\Models\Tweet as a Collection
+
+     */
+    public function timelineTweets(){
+        $userIds = $this->follows->pluck('id');
+        $tweets = Tweet::whereIn('user_id', $userIds)->latest()->get();
+        return $tweets;
+    }
+
 }
