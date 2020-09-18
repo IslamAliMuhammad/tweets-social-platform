@@ -10,9 +10,13 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <textarea class="form-control" name="tweetBody" id="tweetArea"
-                            placeholder="What's happening?"></textarea>
-                    </div>
+                        <textarea class="form-control @error('tweetBody') is-invalid @enderror" name="tweetBody" id="tweetArea"
+                            placeholder="What's happening?" required></textarea>
+
+                        @error('tweetBody')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>  
                     <div class="ml-auto">
                         <button type="submit" class="btn btn-info float-right rounded-pill">Tweet</button>
                     </div>
