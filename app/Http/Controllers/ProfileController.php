@@ -36,6 +36,8 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
+
+        
     }
 
     /**
@@ -47,8 +49,9 @@ class ProfileController extends Controller
     public function show($id)
     {
         //
-        // User::find($id);        
-        return \view('profile');
+        $user = User::find($id);
+        return view('pages.profile', ['user' => $user]);
+        
     }
 
     /**
@@ -60,6 +63,9 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
+        $user = User::find($id);
+        $this->authorize('edit', $user);
+        return 'Edit this profile man';
     }
 
     /**

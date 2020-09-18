@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tweet;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -15,8 +16,9 @@ class HomeController extends Controller
     public function index()
     {
         //
+        $tweets = Auth::user()->timelineTweets();
 
-        return \view('home');
+        return \view('pages.home', ['tweets' => $tweets]);
     }
 
     /**

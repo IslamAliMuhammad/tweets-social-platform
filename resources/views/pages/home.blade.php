@@ -1,3 +1,5 @@
+@extends('../layouts.app')
+@section('home')
 <main>
     <form action="{{route('tweets.store')}}" method="POST">
         @csrf
@@ -32,3 +34,4 @@
     </a>
     @endforeach
 </main>
+@endsection
