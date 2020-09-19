@@ -50,7 +50,7 @@ class ProfileController extends Controller
     {
         //
         $user = User::find($id);
-        return view('pages.profile', ['user' => $user]);
+        return view('pages.profile', ['user' => $user, 'userTweets' => $user->tweets]);
         
     }
 

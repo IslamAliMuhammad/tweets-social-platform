@@ -33,18 +33,24 @@
     </header>
 </main>
 
-@foreach($user->tweets as $tweet)
-<a href="{{ route('profiles.show', $tweet->user_id) }}" class="text-decoration-none text-dark">
-    <div class="d-flex flex-row card card-body mt-2">
-        <div class="mr-3">
-            <img class="rounded-circle" src="https://via.placeholder.com/50" alt="User avatar">
+@if($userTweets->isNotEmpty())
+    @foreach($userTweets as $tweet)
+    <a href="{{ route('profiles.show', $tweet->user_id) }}" class="text-decoration-none text-dark">
+        <div class="d-flex flex-row card card-body mt-2">
+            <div class="mr-3">
+                <img class="rounded-circle" src="https://via.placeholder.com/50" alt="User avatar">
+            </div>
+            <div>
+                <h5>{{ $tweet->user->name  }}</h5>
+                <p>{{ $tweet->body }}</p>
+            </div>
         </div>
-        <div>
-            <h5>{{ $tweet->user->name  }}</h5>
-            <p>{{ $tweet->body }}</p>
-        </div>
+    </a>
+    @endforeach
+@else
+    <div class="card card-body mt-2 ">   
+        <p class="card-">No tweets to display</p>
     </div>
-</a>
-@endforeach
+@endif
 
 @endsection

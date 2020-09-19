@@ -12,16 +12,20 @@
     <div class="card card-body mt-3">
         <h4 class="card-title font-weight-bold">Following</h4>
         <div>
-            @foreach(Auth::User()->follows as $user)
-            <a href="{{ route('profiles.show', $user) }}">
-                <div class="d-flex flex-row mt-2">
-                    <div class="mr-2">
-                        <img class="rounded-circle" src="https://via.placeholder.com/50" alt="User avatar">
+            @if(Auth::User()->follows->isNotEmpty())
+                @foreach(Auth::User()->follows as $user)
+                <a href="{{ route('profiles.show', $user) }}">
+                    <div class="d-flex flex-row mt-2">
+                        <div class="mr-2">
+                            <img class="rounded-circle" src="https://via.placeholder.com/50" alt="User avatar">
+                        </div>
+                        <h6 class="align-self-center text-dark">{{ $user->name }}</h6>
                     </div>
-                    <h6 class="align-self-center text-dark">{{ $user->name }}</h6>
-                </div>
-            </a>
-            @endforeach
+                </a>
+                @endforeach
+            @else
+                <p>No following</p>
+            @endif
         </div>
     </div>
 </aside>
