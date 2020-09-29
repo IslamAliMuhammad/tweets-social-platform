@@ -79,4 +79,7 @@ class User extends Authenticatable
         return $tweets;
     }
 
+    public function profile(){
+        return $this->hasOne('App\Models\Profile');
+    }
 }

@@ -20,6 +20,9 @@ class UserPolicy
     }
 
     public function edit(User $authUser,User $user){
-        return $authUser->is($user);
-    }
+
+        return ($authUser->is($user) && $authUser->profile) ? true : false;
+
+    }   
+
 }

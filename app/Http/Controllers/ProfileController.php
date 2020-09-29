@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Profile;
+
 
 class ProfileController extends Controller
 {
@@ -22,9 +24,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+      
     }
 
     /**
@@ -33,13 +35,13 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         //
 
-        
+      
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -50,8 +52,8 @@ class ProfileController extends Controller
     {
         //
         $user = User::find($id);
-        return view('pages.profile', ['user' => $user, 'userTweets' => $user->tweets]);
-        
+        return view('pages.profile', ['user' => $user, 'profile' => $user->profile, 'userTweets' => $user->tweets]);
+
     }
 
     /**
@@ -65,9 +67,10 @@ class ProfileController extends Controller
         //
         $user = User::find($id);
         $this->authorize('edit', $user);
-        return 'Edit this profile man';
-    }
 
+        $profile = Profile::where('user_id', $id)->firstOrFail();
+        return view('pages.edit-profile', compact('profile'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -78,6 +81,24 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'profile_name' => 'required',
+            'cover' => 'required|image',
+            'avatar' => 'required|image',
+        ]);
+        
+        $cover_path = $request->cover->store('covers');
+        $avatar_path = $request->avatar->store('avatars');
+        $newProfile = [
+            'profile_name' => $request->profile_name,
+            'cover_path' => $cover_path,
+            'avatar_path' => $avatar_path,
+        ];
+
+        $prevProfile = Profile::where('user_id', $id)->firstOrFail();
+        $prevProfile->update($newProfile);
+        
+        return \redirect(\route('profiles.show', $id));
     }
 
     /**
@@ -90,4 +111,5 @@ class ProfileController extends Controller
     {
         //
     }
+
 }

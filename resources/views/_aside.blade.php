@@ -16,10 +16,10 @@
                 @foreach(Auth::User()->follows as $user)
                 <a href="{{ route('profiles.show', $user) }}">
                     <div class="d-flex flex-row mt-2">
-                        <div class="mr-2">
-                            <img class="rounded-circle" src="https://via.placeholder.com/50" alt="User avatar">
+                        <div class="mr-2 w-regular-img">
+                            <img class="img-fluid rounded-circle" src="{{ asset($user->profile->avatar_path) }}" alt="User avatar">
                         </div>
-                        <h6 class="align-self-center text-dark">{{ $user->name }}</h6>
+                        <h6 class="align-self-center text-dark">{{ $user->profile->profile_name }}</h6>
                     </div>
                 </a>
                 @endforeach

@@ -5,8 +5,8 @@
         @csrf
         <div class="card">
             <div class="d-flex flex-row">
-                <div class="align-self-start mt-3 ml-3">
-                    <img class="rounded-circle card-img" src="https://via.placeholder.com/50" alt="User avatar">
+                <div class="align-self-start mt-3 ml-3 w-regular-img">
+                    <img class="rounded-circle card-img" src="{{ asset(Auth::user()->profile->avatar_path) }}" alt="User avatar">
                 </div>
                 <div class="card-body">
                     <div class="form-group">
@@ -28,11 +28,11 @@
     @foreach($tweets as $tweet)
     <a href="{{ route('profiles.show', $tweet->user_id) }}" class="text-decoration-none text-dark">
         <div class="d-flex flex-row card card-body mt-2">
-            <div class="mr-3">
-                <img class="rounded-circle" src="https://via.placeholder.com/50" alt="User avatar">
+            <div class="mr-3 w-regular-img">
+                <img class="img-fluid rounded-circle" src="{{ asset($tweet->user->profile->avatar_path) }}" alt="User avatar">
             </div>
             <div>
-                <h5>{{ $tweet->user->name }}</h5>
+                <h5>{{ $tweet->user->profile->profile_name }}</h5>
                 <p>{{ $tweet->body }}</p>
             </div>
         </div>
