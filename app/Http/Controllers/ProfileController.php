@@ -48,10 +48,11 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user_name)
     {
         //
-        $user = User::find($id);
+        $user = User::where('user_name', $user_name)->firstOrFail();
+
         return view('pages.profile', ['user' => $user, 'profile' => $user->profile, 'userTweets' => $user->tweets]);
 
     }
@@ -62,13 +63,13 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($user_name)
     {
         //
-        $user = User::find($id);
+        $user = User::where('user_name', $user_name)->firstOrFail();
         $this->authorize('edit', $user);
 
-        $profile = Profile::where('user_id', $id)->firstOrFail();
+        $profile = $user->profile;
         return view('pages.edit-profile', compact('profile'));
     }
     /**
@@ -78,7 +79,7 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user_id)
     {
         //
         $request->validate([
@@ -95,10 +96,10 @@ class ProfileController extends Controller
             'avatar_path' => $avatar_path,
         ];
 
-        $prevProfile = Profile::where('user_id', $id)->firstOrFail();
+        $prevProfile = Profile::where('user_id', $user_id)->firstOrFail();
         $prevProfile->update($newProfile);
         
-        return \redirect(\route('profiles.show', $id));
+        return \redirect(\route('profiles.show', User::find($user_id)->user_name));
     }
 
     /**

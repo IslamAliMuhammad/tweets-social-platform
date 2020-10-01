@@ -26,17 +26,18 @@
     </form>
     @if($tweets->isNotEmpty())
     @foreach($tweets as $tweet)
-    <a href="{{ route('profiles.show', $tweet->user_id) }}" class="text-decoration-none text-dark">
-        <div class="d-flex flex-row card card-body mt-2">
+    <div class="d-flex flex-row card card-body mt-2">
+        <a href="{{ route('profiles.show', $tweet->user->user_name) }}" class="text-decoration-none text-dark">
             <div class="mr-3 w-regular-img">
                 <img class="img-fluid rounded-circle" src="{{ asset($tweet->user->profile->avatar_path) }}" alt="User avatar">
             </div>
-            <div>
-                <h5>{{ $tweet->user->profile->profile_name }}</h5>
-                <p>{{ $tweet->body }}</p>
-            </div>
+        </a>
+
+        <div>
+            <h5>{{ $tweet->user->profile->profile_name }}</h5>
+            <p>{{ $tweet->body }}</p>
         </div>
-    </a>
+    </div>
     @endforeach
     @else
     <div class="card card-body mt-2 ">   

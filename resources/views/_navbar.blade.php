@@ -1,13 +1,13 @@
 <nav class="navbar navbar-light bg-light">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('home.index') }}">
                 <i class="fas fa-comment-dots fa-3x text-info"></i>
             </a>
         </li>
         <li class="nav-item active">
             <div>
-                <a class="nav-link font-weight-bold" href="{{ route('home.index') }}">
+                <a class="nav-link font-weight-bold" href="/home">
                     <i class="fas fa-home fa-2x mr-2"></i>Home
                 </a>
             </div>
@@ -38,7 +38,7 @@
             </a>          
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="{{ route('profiles.show', Auth::id()) }}">
+            <a class="nav-link font-weight-bold" href="{{ route('profiles.show', Auth::user()->user_name) }}">
                 <i class="fas fa-id-badge fa-2x mr-2"></i>Profile
             </a>           
         </li>
@@ -48,7 +48,7 @@
         <li class="nav-item">
             <div class="dropdown">
                 <div class="d-flex flex-row mt-3 dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle" src="https://via.placeholder.com/50" alt="User avatar">
+                    <img class="rounded-circle w-regular-img" src="{{ asset(Auth::user()->profile->avatar_path) }}" alt="User avatar">
                     <span class="font-weight-bold ml-2 align-self-center">{{Auth::user()->name}}</span>
                 </div>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

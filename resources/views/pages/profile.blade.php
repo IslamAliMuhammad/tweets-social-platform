@@ -18,12 +18,12 @@
             <div class="d-flex flex-row">
                 @can('edit', $user)
                     <div>
-                        <a href="{{ Route('profiles.edit', $user->id) }}" class="btn btn-info rounded-pill">Edit Profile</a>
+                        <a href="{{ Route('profiles.edit', $user->user_name) }}" class="btn btn-info rounded-pill">Edit Profile</a>
                     </div>
                 @endcan
                
                 @cannot('edit', $user)
-                <form action="{{ route('follows.store', ['id' => $user->id]) }}" method="POST">
+                <form action="{{ route('follows.store', ['user_id' => $user->id]) }}" method="POST">
                     @csrf
                     <button class="btn btn-outline-info rounded-pill" type>{{ Auth::user()->isFollowing($user->id) ? 'Unfollow' : 'Follow' }}</button>
                 </form>
@@ -35,17 +35,17 @@
 
 @if($userTweets->isNotEmpty())
     @foreach($userTweets as $tweet)
-    <a href="{{ route('profiles.show', $tweet->user_id) }}" class="text-decoration-none text-dark">
-        <div class="d-flex flex-row card card-body mt-2">
+    <div class="d-flex flex-row card card-body mt-2">
+        <a href="{{ route('profiles.show', $tweet->user->user_name) }}" class="text-decoration-none text-dark">
             <div class="mr-3 w-regular-img"> 
                 <img class="img-fluid rounded-circle" src="{{ asset($profile->avatar_path) }}" alt="User avatar">
             </div>
-            <div>
-                <h5>{{ $profile->profile_name  }}</h5>
-                <p>{{ $tweet->body }}</p>
-            </div>
+        </a>
+        <div>
+            <h5>{{ $profile->profile_name  }}</h5>
+            <p>{{ $tweet->body }}</p>
         </div>
-    </a>
+    </div>
     @endforeach
 @else
     <div class="card card-body mt-2 ">   

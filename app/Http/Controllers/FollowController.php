@@ -15,13 +15,14 @@ class FollowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($user_id)
     {
         //
-        if(Auth::user()->isFollowing($request->id)){
-            Auth::user()->follows()->detach($request->id);
+
+        if(Auth::user()->isFollowing($user_id)){
+            Auth::user()->follows()->detach($user_id);
         }else{
-            Auth::user()->follows()->attach($request->id);
+            Auth::user()->follows()->attach($user_id);
         }
 
         return back();

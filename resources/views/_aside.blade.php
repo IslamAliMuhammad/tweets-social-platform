@@ -14,7 +14,7 @@
         <div>
             @if(Auth::User()->follows->isNotEmpty())
                 @foreach(Auth::User()->follows as $user)
-                <a href="{{ route('profiles.show', $user) }}">
+                <a href="{{ route('profiles.show', $user->user_name) }}">
                     <div class="d-flex flex-row mt-2">
                         <div class="mr-2 w-regular-img">
                             <img class="img-fluid rounded-circle" src="{{ asset($user->profile->avatar_path) }}" alt="User avatar">
