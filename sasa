@@ -1,0 +1,35 @@
+[33mcommit 113074c4e17580879b417b5b2119d3042f218077[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Islam Ali Muhammad <islam.ali.muhammad@gmail.com>
+Date:   Tue Sep 29 15:38:35 2020 +0200
+
+    feat: Edit profile
+
+[33mcommit 76c543c0d70c7842f6be9c9dbf84d080a43fef7d[m
+Author: Islam Ali Muhammad <islam.ali.muhammad@gmail.com>
+Date:   Sat Sep 19 06:28:31 2020 +0200
+
+    feat: Display descriptive messages if no tweets or following users to display
+
+[33mcommit bd7d58f688ea64ff571e401ead568337fd9bb6b6[m
+Author: Islam Ali Muhammad <islam.ali.muhammad@gmail.com>
+Date:   Fri Sep 18 10:30:28 2020 +0200
+
+    feat: Display errors from validation tweet form
+
+[33mcommit b58311d188849ee586946d0b22e1fc6aa40c4bd5[m
+Author: Islam Ali Muhammad <islam.ali.muhammad@gmail.com>
+Date:   Fri Sep 18 09:42:14 2020 +0200
+
+    feat: Display user profile with follow or edit based on authorization
+
+[33mcommit 6d3f36ba1442a6b66b790162fb9e4088c2095fc9[m
+Author: Islam Ali Muhammad <islam.ali.muhammad@gmail.com>
+Date:   Sun Sep 13 06:58:45 2020 +0200
+
+    feat: Add tweet
+
+[33mcommit 6f3e4c498a04df43e507e3b0bba3dd0873d33197[m
+Author: Islam Ali Muhammad <islam.ali.muhammad@gmail.com>
+Date:   Thu Sep 10 12:26:13 2020 +0200
+
+    feat: Scaffold Authentication

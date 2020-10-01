@@ -11,7 +11,7 @@
 
             <div>
                 <x-jet-label value="User Name" />
-                <x-jet-input class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-jet-input class="block mt-1 w-full" type="text" name="user_name" :value="old('user_name')" required autofocus />
             </div>
 
             <div class="mt-4">
