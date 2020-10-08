@@ -18,12 +18,7 @@ class FollowController extends Controller
     public function store($user_id)
     {
         //
-
-        if(Auth::user()->isFollowing($user_id)){
-            Auth::user()->follows()->detach($user_id);
-        }else{
-            Auth::user()->follows()->attach($user_id);
-        }
+        Auth::user()->toggleFollow($user_id);
 
         return back();
     }

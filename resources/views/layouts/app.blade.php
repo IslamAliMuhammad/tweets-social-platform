@@ -13,14 +13,15 @@
     <body style="height: 2000px;">
         <div class="mx-5">
             <div class="row">
-                <div class="col-md-3 col-lg-2">
+                <div class="col-5 col-sm-3 col-lg-2">
                     @include ('_navbar')
                 </div>
-                <div class="col-md-9 col-lg-7 mt-2">
+                <div class="col-7 col-sm-9 col-lg-7 mt-2">
                     @yield ('home')
                     @yield('profile')
                     @yield('edit-profile')
                     @yield('create-profile')
+                    @yield('explore')
                 </div>
                 <div class="col-lg-3">
                     @include ('_aside')

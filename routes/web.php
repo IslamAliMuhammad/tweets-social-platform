@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\ExploreController;
 use App\Http\Livewire\Main;
 use App\Http\Livewire\Home;
 
@@ -29,10 +30,11 @@ Route::get('/', function () {
 
 
 Route::middleware('auth')->group(function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/home', HomeController::class)->name('home');
     Route::post('/tweets', [TweetController::class, 'store'])->name('tweets.store');
-    Route::get('profiles/{user_name}', [ProfileController::class, 'show'])->name('profiles.show');
-    Route::post('profiles/{user_id}/follows', [FollowController::class, 'store'])->name('follows.store');
-    Route::get('profiles/{user_name}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
-    Route::patch('profiles/{user_id}', [ProfileController::class, 'update'])->name('profiles.update');
+    Route::get('/profiles/{user_name}', [ProfileController::class, 'show'])->name('profiles.show');
+    Route::post('/profiles/{user_id}/follows', [FollowController::class, 'store'])->name('follows.store');
+    Route::get('/profiles/{user_name}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
+    Route::patch('/profiles/{user_id}', [ProfileController::class, 'update'])->name('profiles.update');
+    Route::get('/explore', ExploreController::class)->name('explore');
 });

@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="d-flex flex-row justify-content-between mt-3">
-            <div>   
+            <div style="width: 37%">   
                 <h4 class="font-weight-bold">@isset($profile) {{ $profile->profile_name }} @endisset</h4>
                 <p class="text-muted">@isset($profile) Join {{ $profile->created_at->diffForHumans() }} @endisset</p>
             </div>
@@ -47,6 +47,7 @@
         </div>
     </div>
     @endforeach
+    {{ $userTweets->links() }}
 @else
     <div class="card card-body mt-2 ">   
         <p class="card-">No tweets to display</p>

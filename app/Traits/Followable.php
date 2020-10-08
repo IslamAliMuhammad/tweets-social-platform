@@ -20,5 +20,15 @@ trait Followable{
 
         return $authUserFollowing->contains($id);
     }
+    /**
+     * Toggle between follow and unfollow
+     * 
+     * @param $user_id
+     */
+    public function toggleFollow($user_id){
+   
+        $this->follows()->toggle($user_id);
+
+    }
     
 }

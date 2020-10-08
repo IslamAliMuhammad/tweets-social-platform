@@ -1,19 +1,19 @@
 <nav class="navbar navbar-light bg-light">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
         <li class="nav-item active">
-            <a class="navbar-brand" href="{{ route('home.index') }}">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 <i class="fas fa-comment-dots fa-3x text-info"></i>
             </a>
         </li>
         <li class="nav-item active">
             <div>
-                <a class="nav-link font-weight-bold" href="/home">
+                <a class="nav-link font-weight-bold" href="{{ route('home') }}">
                     <i class="fas fa-home fa-2x mr-2"></i>Home
                 </a>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="#">
+            <a class="nav-link font-weight-bold" href="{{ route('explore') }}">
                 <i class="fas fa-hashtag fa-2x mr-2"></i>Explore
             </a>
         </li>

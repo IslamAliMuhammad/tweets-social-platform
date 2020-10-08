@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
-class HomeController extends Controller
+class ExploreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,10 @@ class HomeController extends Controller
     public function __invoke()
     {
         //
-        $tweets = Auth::user()->timelineTweets();
-
-        return \view('pages.home', ['tweets' => $tweets]);
+        $users = User::with('profile')->where('id' , '!=', Auth::id())->paginate(10);
+        
+        return view('pages.explore', compact('users'));
     }
+
+   
 }

@@ -20,7 +20,7 @@
             <div class="form-group">
                 <label for="inputCover">Cover image</label>
                 <div class="d-flex flex-row">
-                    <input type="file" class="form-control-file @error('cover') is-invalid @enderror" id="inputCover" name="cover" accept="image/*" required>
+                    <input type="file" class="form-control-file @error('cover') is-invalid @enderror" id="inputCover" name="cover" accept="image/*">
                     <label for="inputCover">
                         <img src="{{ asset($profile->cover_path) }}" alt="cover" style="width: 60px">
                     </label>
@@ -33,7 +33,7 @@
             <div class="form-group">
                 <label for="inputAvatar">Avatar</label>
                 <div class="d-flex flex-row">
-                <input type="file" class="form-control-file @error('avatar') is-invalid @enderror" id="inputAvatar" name="avatar" accept="image/*" required>
+                <input type="file" class="form-control-file @error('avatar') is-invalid @enderror" id="inputAvatar" name="avatar" accept="image/*">
                     <label for="inputAvatar">
                         <img src="{{ asset($profile->avatar_path) }}" alt="avatar" style="width: 40px">
                     </label>
@@ -43,7 +43,10 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">Edit</button>
+            <button type="submit" class="btn btn-info mr-1">Edit</button>
+
+            <a href="{{ route('profiles.show', Auth::user()->user_name) }}" class="btn btn-outline-info">Cancel</a>
+
           </form>
     </div>
 </main>

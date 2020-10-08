@@ -53,7 +53,7 @@ class ProfileController extends Controller
         //
         $user = User::where('user_name', $user_name)->firstOrFail();
 
-        return view('pages.profile', ['user' => $user, 'profile' => $user->profile, 'userTweets' => $user->tweets]);
+        return view('pages.profile', ['user' => $user, 'profile' => $user->profile, 'userTweets' => $user->tweets()->paginate(10)]);
 
     }
 
@@ -84,18 +84,26 @@ class ProfileController extends Controller
         //
         $request->validate([
             'profile_name' => 'required',
-            'cover' => 'required|image',
-            'avatar' => 'required|image',
+            'cover' => 'image',
+            'avatar' => 'image',
         ]);
         
-        $cover_path = $request->cover->store('covers');
-        $avatar_path = $request->avatar->store('avatars');
+     
         $newProfile = [
             'profile_name' => $request->profile_name,
-            'cover_path' => $cover_path,
-            'avatar_path' => $avatar_path,
         ];
 
+        if(isset($request->cover)){
+            $cover_path = $request->cover->store('covers');
+            $newProfile['cover_path'] = $cover_path;
+        }
+
+        if(isset($request->avatar)){
+            $avatar_path = $request->avatar->store('avatars');
+            $newProfile['avatar_path'] = $avatar_path;
+
+        }
+        
         $prevProfile = Profile::where('user_id', $user_id)->firstOrFail();
         $prevProfile->update($newProfile);
         

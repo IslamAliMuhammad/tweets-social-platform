@@ -3,7 +3,7 @@
 <main>
     <form action="{{route('tweets.store')}}" method="POST">
         @csrf
-        <div class="card">
+        <div class="card border-info">
             <div class="d-flex flex-row">
                 <div class="align-self-start mt-3 ml-3 w-regular-img">
                     <img class="rounded-circle card-img" src="{{ asset(Auth::user()->profile->avatar_path) }}" alt="User avatar">
@@ -39,6 +39,7 @@
         </div>
     </div>
     @endforeach
+    {{ $tweets->links() }}
     @else
     <div class="card card-body mt-2 ">   
         <p class="card-">No tweets to display</p>
