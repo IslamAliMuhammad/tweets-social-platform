@@ -53,7 +53,7 @@ class ProfileController extends Controller
         //
         $user = User::where('user_name', $user_name)->firstOrFail();
 
-        return view('pages.profile', ['user' => $user, 'profile' => $user->profile, 'userTweets' => $user->tweets()->paginate(10)]);
+        return view('pages.profile', ['user' => $user, 'profile' => $user->profile, 'tweets' => $user->tweets()->paginate(10)]);
 
     }
 

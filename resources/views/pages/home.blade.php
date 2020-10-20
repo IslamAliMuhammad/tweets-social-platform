@@ -1,4 +1,4 @@
-@extends('../layouts.app')
+@extends('layouts.app')
 @section('home')
 <main>
     <form action="{{route('tweets.store')}}" method="POST">
@@ -26,24 +26,12 @@
     </form>
     @if($tweets->isNotEmpty())
     @foreach($tweets as $tweet)
-    <div class="d-flex flex-row card card-body mt-2">
-        <a href="{{ route('profiles.show', $tweet->user->user_name) }}" class="text-decoration-none text-dark">
-            <div class="mr-3 w-regular-img">
-                <img class="img-fluid rounded-circle" src="{{ asset($tweet->user->profile->avatar_path) }}" alt="User avatar">
-            </div>
-        </a>
-
-        <div>
-            <h5>{{ $tweet->user->profile->profile_name }}</h5>
-            <p>{{ $tweet->body }}</p>
-        </div>
-    </div>
+        <livewire:tweet-comp :tweet="$tweet">
     @endforeach
     {{ $tweets->links() }}
     @else
-    <div class="card card-body mt-2 ">   
-        <p class="card-">No tweets to display</p>
-    </div>
+        <livewire:no-tweets-comp />
     @endif
 </main>
+
 @endsection

@@ -8,8 +8,9 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Livewire\Main;
 use App\Http\Livewire\Home;
+use App\Http\Controllers\LikeController;
 
-                                    
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,7 @@ use App\Http\Livewire\Home;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     if(Auth::check()){
@@ -38,3 +40,4 @@ Route::middleware('auth')->group(function(){
     Route::patch('/profiles/{user_id}', [ProfileController::class, 'update'])->name('profiles.update');
     Route::get('/explore', ExploreController::class)->name('explore');
 });
+

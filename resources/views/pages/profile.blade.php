@@ -33,25 +33,13 @@
     </header>
 </main>
 
-@if($userTweets->isNotEmpty())
-    @foreach($userTweets as $tweet)
-    <div class="d-flex flex-row card card-body mt-2">
-        <a href="{{ route('profiles.show', $tweet->user->user_name) }}" class="text-decoration-none text-dark">
-            <div class="mr-3 w-regular-img"> 
-                <img class="img-fluid rounded-circle" src="{{ asset($profile->avatar_path) }}" alt="User avatar">
-            </div>
-        </a>
-        <div>
-            <h5>{{ $profile->profile_name  }}</h5>
-            <p>{{ $tweet->body }}</p>
-        </div>
-    </div>
+@if($tweets->isNotEmpty())
+    @foreach($tweets as $tweet)
+        <livewire:tweet-comp :tweet="$tweet">
     @endforeach
-    {{ $userTweets->links() }}
+    {{ $tweets->links() }}
 @else
-    <div class="card card-body mt-2 ">   
-        <p class="card-">No tweets to display</p>
-    </div>
+    <livewire:no-tweets-comp />
 @endif
 
 @endsection
