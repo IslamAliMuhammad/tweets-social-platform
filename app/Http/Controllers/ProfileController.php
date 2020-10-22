@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profile;
+use App\Traits\Reactionable;
 
 
 class ProfileController extends Controller
 {
+    use Reactionable;
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +55,11 @@ class ProfileController extends Controller
         //
         $user = User::where('user_name', $user_name)->firstOrFail();
 
-        return view('pages.profile', ['user' => $user, 'profile' => $user->profile, 'tweets' => $user->tweets()->paginate(10)]);
+        $tweets = $user->tweets()->latest()->leftJoinSub($this->reactionsCounter(), 'reactions', function($join){
+            $join->on('tweets.id', '=', 'reactions.tweet_id');
+        })->paginate(10);
+
+        return view('pages.profile', ['user' => $user, 'profile' => $user->profile, 'tweets' => $tweets]);
 
     }
 

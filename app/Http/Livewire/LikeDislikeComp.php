@@ -6,19 +6,20 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reaction;
 
+
 class LikeDislikeComp extends Component
 {
     public $tweet;
+
     public $reaction;
     public $likeCounter;
     public $dislikeCounter;
 
 
     public function mount(){
-        $tweetReactions = $this->tweet->reactions;
-        $this->likeCounter = $this->likeCounterState($tweetReactions);
-        $this->dislikeCounter = $this->dislikeCounterState($tweetReactions);
-        $this->reaction = $this->reactionState($tweetReactions);
+        $this->reaction = $this->reactionState();
+        $this->likeCounter = $this->tweet->like_counter ? $this->tweet->like_counter : 0;
+        $this->dislikeCounter = $this->tweet->dislike_counter ? $this->tweet->dislike_counter : 0;
     }
  
     public function render()
@@ -26,46 +27,24 @@ class LikeDislikeComp extends Component
         return view('livewire.like-dislike-comp');
     }
 
-     /**
-     * Initialize likeCounter property
-     * 
-     * @param Illuminate\Support\Collection $tweetReactions
-     * @return int 
-     */
-    public function likeCounterState($tweetReactions){
-        return $tweetReactions->where('like', true)->count();
-    }
-    
-     /**
-     * Initialize dislikeCounter property
-     * 
-     * @param Illuminate\Support\Collection $tweetReactions
-     * @return int 
-     */
-    public function dislikeCounterState($tweetReactions){
-        return $tweetReactions->where('like', false)->count();
-    }
-
-
     /**
      * Return tweet reaction state
      * 
-     * @param Illuminate\Support\Collection $tweetReactions
      * @return string
      * 
      */
-    public function reactionState($tweetReactions){
-        if($tweetReactions->pluck('user_id')->contains(Auth::id())){
-            $authUserReaction = $tweetReactions->firstWhere('user_id', Auth::id());
-            if($authUserReaction->like == true){
+    public function reactionState(){
+        $reaction = $this->tweet->userReaction(Auth::user());
+
+        if($reaction){
+            if($reaction->like == true){
                 return 'like';
             }else{
                 return 'dislike';
             }
         }
-
         return 'default';
-    }
+    }   
 
     /**
      * Handle like reaction

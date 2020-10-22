@@ -16,4 +16,15 @@ class Tweet extends Model
     public function reactions(){
         return $this->hasMany('App\Models\Reaction');
     }
+
+    /**
+     * Retrieve user reaction upon the tweet
+     * 
+     * @param App\Models\User $user
+     * @return  App\Models\Reaction or Null if not exist
+     */
+    public function userReaction(User $user){
+        return $this->reactions()->where('user_id', $user->id)->first();
+    }
+
 }

@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\Followable;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -67,19 +68,14 @@ class User extends Authenticatable
     }
 
 
-    /**
-     * Get tweets for users that user following
-     * 
-     * @return App\Models\Tweet as a Collection
-
-     */
-    public function timelineTweets(){
-        $userIds = $this->follows()->select('id')->get()->pluck('id');
-        $tweets = Tweet::with('reactions')->whereIn('user_id', $userIds)->latest()->paginate(10);
-        return $tweets;
-    }
-
     public function profile(){
         return $this->hasOne('App\Models\Profile');
+    }
+
+    public function followersTweets(){
+
+        $followersIds = $this->userFollowers()->pluck('id');
+        return Tweet::whereIn('user_id', $followersIds)->latest();
+
     }
 }

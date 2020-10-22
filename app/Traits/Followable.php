@@ -30,5 +30,14 @@ trait Followable{
         $this->follows()->toggle($user_id);
 
     }
+
+    /**
+     * Retrieve followers ids for a user
+     * 
+     * @return Illuminate\Datbase\Eloquent\Collection 
+     */
+    public function userFollowers(){
+        return $this->follows()->select('id')->get();
+    }
     
 }

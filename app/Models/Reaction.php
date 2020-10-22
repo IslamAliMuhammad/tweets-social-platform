@@ -14,4 +14,5 @@ class Reaction extends Model
         'tweet_id',
         'like',
     ];
+
 }
