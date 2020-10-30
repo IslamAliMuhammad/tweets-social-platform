@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Traits;
+use App\Models\User;
 
 trait Followable{
 
@@ -12,23 +13,13 @@ trait Followable{
      * Check if user following given user
      * 
      * @param $id
-     * @return true if user follow, false otherwise
+     * @return bool
      */
-    public function isFollowing($id){
+    public function isFollowing(User $user){
 
         $authUserFollowing = $this->follows;
 
-        return $authUserFollowing->contains($id);
-    }
-    /**
-     * Toggle between follow and unfollow
-     * 
-     * @param $user_id
-     */
-    public function toggleFollow($user_id){
-   
-        $this->follows()->toggle($user_id);
-
+        return $authUserFollowing->contains($user->id);
     }
 
     /**

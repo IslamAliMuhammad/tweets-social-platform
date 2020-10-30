@@ -1,6 +1,6 @@
 <div class="card card-body mt-2">
     <div class="d-flex flex-row">
-        <a href="{{ route('profiles.show', $tweet->user->user_name) }}" class="text-decoration-none text-dark">
+        <a href="{{ route('profiles.show', $tweet->user) }}" class="text-decoration-none text-dark">
             <div class="mr-3 w-regular-img">
                 <img class="img-fluid rounded-circle" src="{{ asset($tweet->user->profile->avatar_path) }}"
                     alt="User avatar">

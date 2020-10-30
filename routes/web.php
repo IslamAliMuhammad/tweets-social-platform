@@ -10,6 +10,13 @@ use App\Http\Livewire\Main;
 use App\Http\Livewire\Home;
 use App\Http\Controllers\LikeController;
 
+use App\Http\Livewire\HomeComp;
+use App\Http\Livewire\ProfileComp;
+use App\Http\Livewire\ExploreComp;
+use App\Http\Livewire\EditProfileComp;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +39,11 @@ Route::get('/', function () {
 
 
 Route::middleware('auth')->group(function(){
-    Route::get('/home', HomeController::class)->name('home');
+    Route::get('/home', HomeComp::class)->name('home');
     Route::post('/tweets', [TweetController::class, 'store'])->name('tweets.store');
-    Route::get('/profiles/{user_name}', [ProfileController::class, 'show'])->name('profiles.show');
-    Route::post('/profiles/{user_id}/follows', [FollowController::class, 'store'])->name('follows.store');
-    Route::get('/profiles/{user_name}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
-    Route::patch('/profiles/{user_id}', [ProfileController::class, 'update'])->name('profiles.update');
-    Route::get('/explore', ExploreController::class)->name('explore');
+    Route::get('/profiles/{user:user_name}', ProfileComp::class)->name('profiles.show');
+    Route::get('/profiles/{user:user_name}/edit', EditProfileComp::class)->name('profiles.edit');
+    Route::patch('/profiles/{profile}', [ProfileController::class, 'update'])->name('profiles.update');
+    Route::get('/explore', ExploreComp::class)->name('explore');
 });
 

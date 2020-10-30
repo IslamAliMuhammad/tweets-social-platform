@@ -27,4 +27,5 @@ class Tweet extends Model
         return $this->reactions()->where('user_id', $user->id)->first();
     }
 
+    
 }

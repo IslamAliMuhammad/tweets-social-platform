@@ -1,5 +1,3 @@
-@extends('layouts.app')
-@section('profile')
 <main>
     <header>
         <div>
@@ -18,28 +16,23 @@
             <div class="d-flex flex-row">
                 @can('edit', $user)
                     <div>
-                        <a href="{{ Route('profiles.edit', $user->user_name) }}" class="btn btn-info rounded-pill">Edit Profile</a>
+                        <a href="{{ Route('profiles.edit', $user) }}" class="btn btn-info rounded-pill">Edit Profile</a>
                     </div>
                 @endcan
                
                 @cannot('edit', $user)
-                <form action="{{ route('follows.store', ['user_id' => $user->id]) }}" method="POST">
-                    @csrf
-                    <button class="btn btn-outline-info rounded-pill" type>{{ Auth::user()->isFollowing($user->id) ? 'Unfollow' : 'Follow' }}</button>
-                </form>
+                    <livewire:follow-button-comp :user="$user" >
                 @endcannot
             </div>
         </div>
     </header>
-</main>
-
-@if($tweets->isNotEmpty())
+    @if($tweets->isNotEmpty())
     @foreach($tweets as $tweet)
-        <livewire:tweet-comp :tweet="$tweet">
+        <livewire:tweet-comp :tweet="$tweet" :key="$tweet->id">
     @endforeach
     {{ $tweets->links() }}
-@else
-    <livewire:no-tweets-comp />
-@endif
+    @else
+        <livewire:no-tweets-comp />
+    @endif
+</main>
 
-@endsection

@@ -11,73 +11,7 @@ use App\Traits\Reactionable;
 class ProfileController extends Controller
 {
     use Reactionable;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($id)
-    {
-      
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, $id)
-    {
-        //
-
-      
-    }
-    
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($user_name)
-    {
-        //
-        $user = User::where('user_name', $user_name)->firstOrFail();
-
-        $tweets = $user->tweets()->latest()->leftJoinSub($this->reactionsCounter(), 'reactions', function($join){
-            $join->on('tweets.id', '=', 'reactions.tweet_id');
-        })->paginate(10);
-
-        return view('pages.profile', ['user' => $user, 'profile' => $user->profile, 'tweets' => $tweets]);
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($user_name)
-    {
-        //
-        $user = User::where('user_name', $user_name)->firstOrFail();
-        $this->authorize('edit', $user);
-
-        $profile = $user->profile;
-        return view('pages.edit-profile', compact('profile'));
-    }
+ 
     /**
      * Update the specified resource in storage.
      *

@@ -15,17 +15,13 @@
         <div class="mx-5">
             <div class="row">
                 <div class="col-5 col-sm-3 col-lg-2">
-                    @include ('_navbar')
+                   <livewire:navbar-comp />
                 </div>
                 <div class="col-7 col-sm-9 col-lg-7 mt-2">
-                    @yield ('home')
-                    @yield('profile')
-                    @yield('edit-profile')
-                    @yield('create-profile')
-                    @yield('explore')
+                    {{ $slot }}
                 </div>
                 <div class="col-lg-3">
-                    @include ('_aside')
+                    <livewire:aside-comp />
                 </div>
             </div>
         </div>
@@ -33,8 +29,8 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         
-        <!-- <script src="http://unpkg.com/turbolinks"></script> -->
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script>
+        
         @livewireScripts
     </body>
 </html>

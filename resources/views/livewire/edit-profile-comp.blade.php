@@ -1,11 +1,8 @@
-@extends('layouts.app')
-
-@section('edit-profile')
 <main>
     <div class="card card-body">
         <h3 class="card-title">Edit profile</h3>
 
-        <form method="POST" action="{{ route('profiles.update', $profile->user_id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('profiles.update', $profile) }}" enctype="multipart/form-data">
 
             @csrf
             @method('PATCH')
@@ -50,4 +47,3 @@
           </form>
     </div>
 </main>
-@endsection

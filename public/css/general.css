@@ -3,3 +3,22 @@
     width: 60px;
   }
 
+  
+/* mini-profile-comp */
+
+.btn-follow{
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  #explore .btn-follow{
+    width: min-content;
+  }
+
+  #explore .flex-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
