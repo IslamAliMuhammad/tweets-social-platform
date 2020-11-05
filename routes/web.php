@@ -39,7 +39,7 @@ Route::get('/', function () {
 
 
 Route::middleware('auth')->group(function(){
-    Route::get('/home', HomeComp::class)->name('home');
+    Route::get('/home', HomeComp::class)->name('home');    
     Route::post('/tweets', [TweetController::class, 'store'])->name('tweets.store');
     Route::get('/profiles/{user:user_name}', ProfileComp::class)->name('profiles.show');
     Route::get('/profiles/{user:user_name}/edit', EditProfileComp::class)->name('profiles.edit');

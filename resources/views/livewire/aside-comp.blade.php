@@ -1,5 +1,6 @@
 <aside>
-    <livewire:search-comp />
+    <livewire:search.layout-comp />
     
    <livewire:following-list-comp />
 </aside>
+    

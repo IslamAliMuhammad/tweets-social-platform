@@ -5,9 +5,9 @@
                 <img src="{{ asset($user->profile->avatar_path) }}" class="rounded-circle img-fluid" alt="user avatar"
                     >
             </div>
-            <div class="flex-container">
-                <h5 class="ml-4 align-self-center font-weight-bold text-dark">{{ $user->profile->profile_name }}</h5>
-                <span class="align-self-center ml-2 text-muted">{{ '@' . $user->user_name }}</span>
+            <div class="flex-container ml-3">
+                <h5 class="align-self-center font-weight-bold text-dark">{{ $user->profile->profile_name }}</h5>
+                <span class="align-self-center text-muted">{{ '@' . $user->user_name }}</span>
             </div>
         </a>
         <livewire:follow-button-comp :user="$user" >
