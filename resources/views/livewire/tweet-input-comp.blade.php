@@ -1,5 +1,5 @@
 <div>
-    <form action="{{route('tweets.store')}}" method="POST">
+    <form wire:submit.prevent="submit" method="POST">
         @csrf
         <div class="card border-info">
             <div class="d-flex flex-row">
@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <textarea class="form-control @error('tweetBody') is-invalid @enderror" name="tweetBody"
+                        <textarea class="form-control @error('tweetBody') is-invalid @enderror" wire:model.defer="tweetBody"
                             id="tweetArea" placeholder="What's happening?" required></textarea>
 
                         @error('tweetBody')
@@ -17,7 +17,8 @@
                         @enderror
                     </div>
                     <div class="ml-auto">
-                        <button type="submit" class="btn btn-info float-right rounded-pill">Tweet</button>
+                        <button class="btn btn-outline-info float-right rounded-pill close-tweet-input" wire:click="$emitUp('closeTweetInputOverlay')">Close</button>
+                        <button type="submit" class="btn btn-outline-info float-right rounded-pill mr-2">Tweet</button>
                     </div>
                 </div>
             </div>

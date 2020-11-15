@@ -9,6 +9,8 @@ class Tweet extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'body'];
+
     public function user(){
         return $this->belongsTo('App\Models\User');
     }

@@ -25,6 +25,6 @@ class ProfileComp extends Component
 
     public function render()
     {
-        return view('livewire.profile-comp', ['tweets' => $this->tweetsJoinReactions($this->user->tweets()->getQuery())->paginate(10)]);
+        return view('livewire.profile-comp', ['tweets' => $this->tweetsJoinReactions($this->user->tweets()->latest()->getQuery())->paginate(10)]);
     }
 }

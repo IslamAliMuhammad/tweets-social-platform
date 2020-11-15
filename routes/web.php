@@ -14,6 +14,8 @@ use App\Http\Livewire\HomeComp;
 use App\Http\Livewire\ProfileComp;
 use App\Http\Livewire\ExploreComp;
 use App\Http\Livewire\EditProfileComp;
+use App\Http\Livewire\TweetInputComp;
+
 
 
 
@@ -40,7 +42,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function(){
     Route::get('/home', HomeComp::class)->name('home');    
-    Route::post('/tweets', [TweetController::class, 'store'])->name('tweets.store');
+    Route::post('/tweets', TweetInputComp::class)->name('tweets.store');
     Route::get('/profiles/{user:user_name}', ProfileComp::class)->name('profiles.show');
     Route::get('/profiles/{user:user_name}/edit', EditProfileComp::class)->name('profiles.edit');
     Route::patch('/profiles/{profile}', [ProfileController::class, 'update'])->name('profiles.update');
