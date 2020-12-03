@@ -15,6 +15,8 @@ use App\Http\Livewire\ProfileComp;
 use App\Http\Livewire\ExploreComp;
 use App\Http\Livewire\EditProfileComp;
 use App\Http\Livewire\TweetInputComp;
+use App\Http\Livewire\BookmarksComp;
+
 
 
 
@@ -47,5 +49,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/profiles/{user:user_name}/edit', EditProfileComp::class)->name('profiles.edit');
     Route::patch('/profiles/{profile}', [ProfileController::class, 'update'])->name('profiles.update');
     Route::get('/explore', ExploreComp::class)->name('explore');
+    Route::get('/bookmarks', BookmarksComp::class)->name('bookmarks');    
 });
 

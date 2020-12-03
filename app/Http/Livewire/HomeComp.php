@@ -13,11 +13,10 @@ class HomeComp extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-    
- 
+  
     public function render()
     {
-        return view('livewire.home-comp', ['tweets' => $this->tweetsJoinReactions(Auth::user()->followersTweets())->paginate(10)]);
+        return view('livewire.home-comp', ['tweets' => $this->tweetsJoin(Auth::user()->followersTweets())->paginate(10)]);
     }
  
 }

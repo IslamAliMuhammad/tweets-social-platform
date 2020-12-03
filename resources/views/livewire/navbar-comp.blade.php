@@ -16,12 +16,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="#">
-                <i class="fas fa-bell fa-2x mr-2"></i>Notifications
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="#">
+            <a class="nav-link font-weight-bold" href="{{ route('bookmarks') }}">
                 <i class="fas fa-bookmark fa-2x mr-2"></i>Bookmarks
             </a>
         </li>

@@ -22,9 +22,9 @@ class ProfileComp extends Component
         $this->profile = $user;
         $this->profile = $user->profile;
     }
-
+    
     public function render()
     {
-        return view('livewire.profile-comp', ['tweets' => $this->tweetsJoinReactions($this->user->tweets()->latest()->getQuery())->paginate(10)]);
+        return view('livewire.profile-comp', ['tweets' => $this->tweetsJoin($this->user->tweets()->latest()->getQuery())->paginate(10)]);
     }
 }

@@ -10,7 +10,10 @@
             <h5>{{ $tweet->user->profile->profile_name }}</h5>
             <p>{{ $tweet->body }}</p>
 
-            <livewire:reaction-comp :tweet="$tweet">
+            <div class="d-flex flex-row">
+                <livewire:reaction-comp :tweet="$tweet">
+                <livewire:bookmark-comp :tweet="$tweet"/>
+            </div>
         </div>
     </div>
 </div>

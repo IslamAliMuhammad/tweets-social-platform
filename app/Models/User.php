@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\Followable;
 
+use App\Models\Bookmark;
 
 class User extends Authenticatable
 {
@@ -77,5 +78,9 @@ class User extends Authenticatable
         $followersIds = $this->userFollowers()->pluck('id');
         return Tweet::whereIn('user_id', $followersIds)->latest();
 
+    }
+
+    public function getBookmarks(){
+        dd(Bookmark::where('user_id', $this->id)->get());
     }
 }

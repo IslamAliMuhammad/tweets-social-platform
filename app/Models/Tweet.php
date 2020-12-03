@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Bookmark;
 class Tweet extends Model
 {
     use HasFactory;
@@ -29,5 +29,8 @@ class Tweet extends Model
         return $this->reactions()->where('user_id', $user->id)->first();
     }
 
-    
+    public function bookmarks()
+    {
+        return $this->hasMany('App\Models\Bookmark');
+    }
 }
