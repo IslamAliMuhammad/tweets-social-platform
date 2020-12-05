@@ -15,7 +15,7 @@
                 <i class="fas fa-hashtag fa-2x mr-2"></i>Explore
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ $navigation === 'bookmarks' ? 'active' : ''}}">
             <a class="nav-link font-weight-bold" href="{{ route('bookmarks') }}">
                 <i class="fas fa-bookmark fa-2x mr-2"></i>Bookmarks
             </a>
