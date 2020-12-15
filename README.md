@@ -8,6 +8,15 @@ Tweets is a social network platform that allows people to express their ideas th
 * [Livewire](https://laravel-livewire.com/) 
 * [Bootstrap](https://getbootstrap.com/)
 
+## App Screenshots
+
+![Home](/app-screenshots/1.PNG)
+![Profile](/app-screenshots/2.PNG)
+![Explore](/app-screenshots/3.PNG)
+![Bookmarks](/app-screenshots/4.PNG)
+![Tweet Input](/app-screenshots/5.PNG)
+![Edit Profile](/app-screenshots/6.PNG)
+
 ## Getting Started 
 
 ### Prerequisites 
@@ -34,15 +43,6 @@ Tweets is a social network platform that allows people to express their ideas th
    ```sh
    php artisan storage:link
    ```
-
-## App Screenshots
-
-![Home](/app-screenshots/1.PNG)
-![Profile](/app-screenshots/2.PNG)
-![Explore](/app-screenshots/3.PNG)
-![Bookmarks](/app-screenshots/4.PNG)
-![Tweet Input](/app-screenshots/5.PNG)
-![Edit Profile](/app-screenshots/6.PNG)
-
+   
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
