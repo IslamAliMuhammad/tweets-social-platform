@@ -1,6 +1,6 @@
 # Tweets Social Platform
 
-Tweets is a social network platform that allows people to express their ideas through tweets and follow each other in addition to like or dislike other tweets and bookmark inspired tweets. 
+Tweets social platform is a full-stack web app that allows users to tweet their ideas and interact with each other through many features e.g. following each other, like and dislike tweets, and bookmaker tweets.
 
 ## Built With
 * [PHP](https://www.php.net/) & [Laravel](https://laravel.com/)
